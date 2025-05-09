@@ -12,7 +12,7 @@ def get_safe_email(instance):
     if hasattr(instance, 'sender') and instance.sender:
         email = getattr(instance.sender.user, 'email', None)
     elif hasattr(instance, 'created_by') and instance.created_by:
-        email = getattr(instance.created_by.user, 'email', None)
+        email = getattr(instance.created_by.email, 'email', None)
 
     if not email:
         return 'unknown'

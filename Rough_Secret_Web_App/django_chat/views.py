@@ -7,11 +7,15 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = GroupDetail.objects.all()
     serializer_class = GroupDetailSerializer
     permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
 
     def get_queryset(self):
+        # print("User:", self.request.user)
+        # print("User ID:", self.request.user.id)
+        # print("User Groups:", self.queryset.filter(memberships__member=self.request.user))
         return GroupDetail.objects.filter(memberships__member=self.request.user).distinct()
 
 class GroupMembershipViewSet(viewsets.ModelViewSet):
@@ -19,6 +23,7 @@ class GroupMembershipViewSet(viewsets.ModelViewSet):
     queryset = GroupMembership.objects.all()
     serializer_class = GroupMembershipSerializer
     permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
         serializer.save()
@@ -26,7 +31,8 @@ class GroupMembershipViewSet(viewsets.ModelViewSet):
 class MessageListCreateView(generics.ListCreateAPIView):
 
     serializer_class = MessageSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         group_id = self.request.query_params.get('group')
@@ -45,7 +51,8 @@ class MessageReadStatusUpdateView(generics.UpdateAPIView):
 
     queryset = MessageReadStatus.objects.all()
     serializer_class = MessageReadStatusSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def perform_update(self, serializer):
         serializer.save(read=True, read_at=timezone.now())
@@ -53,14 +60,16 @@ class MessageReadStatusUpdateView(generics.UpdateAPIView):
 class UserActivityView(generics.RetrieveUpdateAPIView):
 
     serializer_class = UserActivitySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_object(self):
         return UserActivity.objects.get_or_create(profile=self.request.user)[0]
 
 class MutedUserListCreateView(generics.ListCreateAPIView):
     serializer_class = MutedUserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         return MutedUser.objects.filter(muted_by=self.request.user)
@@ -71,7 +80,8 @@ class MutedUserListCreateView(generics.ListCreateAPIView):
 class MutedUserDeleteView(generics.DestroyAPIView):
 
     serializer_class = MutedUserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_object(self):
         return MutedUser.objects.get(

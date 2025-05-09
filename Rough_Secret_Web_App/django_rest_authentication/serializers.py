@@ -40,7 +40,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
         fields = [
-            'id', 'first_name', 'last_name', 'username', 'email', 'password', 'phone', 'gender', 'date_of_birth',
+            'id', 'username', 'email', 'password', 'phone', 'gender', 'date_of_birth',
             'is_active', 'profile_picture', 'city', 'zip_code', 'state', 'country', 'is_verified',
             'is_profile_complete', 'groups'
         ]
@@ -192,8 +192,7 @@ class LoginSerializer(serializers.Serializer):
         return {
             "id": user.id,
             "email": user.email,
-            "first_name": user.first_name,
-            "last_name": user.last_name,
+            "username": user.username,
             "is_active": user.is_active,
             "is_verified": getattr(user, "is_verified", False),
             "groups": list(user.groups.values_list("name", flat=True)) if user.groups.exists() else [],
