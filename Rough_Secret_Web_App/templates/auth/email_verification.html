@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Email Verification - Rouge Secret</title>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #f4f6f9;">
+    <table cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f6f9; padding: 20px;">
+      <tr>
+        <td align="center">
+          <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 40px; font-family: 'Arial', sans-serif;">
+
+            <!-- Logo -->
+            <tr>
+              <td align="center" style="padding-bottom: 20px;">
+                <img src="{{ logo_url }}" style="max-width: 120px;"/>
+              </td>
+            </tr>
+
+            <!-- Welcome Icon -->
+            <tr>
+              <td align="center" style="font-size: 30px; color: #E91E63; padding-bottom: 10px;">
+                💖
+              </td>
+            </tr>
+
+            <!-- Heading -->
+            <tr>
+              <td align="center" style="font-size: 24px; font-weight: bold; color: #0D1B2A;">
+                Welcome to Rouge Secret
+              </td>
+            </tr>
+
+            <!-- Welcome Text -->
+            <tr>
+              <td align="center" style="padding: 20px 0; color: #666; font-size: 16px; line-height: 1.6;">
+                Hi {{ full_name }},<br /><br />
+                We're thrilled to have you on this journey where real connections bloom —<br />
+                whether it's an exciting online chat or a memorable meeting in person.<br /><br />
+                Let's unlock the secret to unforgettable moments together! 🌟
+              </td>
+            </tr>
+
+            <!-- Verify Button -->
+            <tr>
+              <td align="center" style="padding: 20px 0;">
+                <a href="{{ verification_url }}" style="background-color: #E91E63; color: #fff; padding: 14px 28px; text-decoration: none; border-radius: 30px; font-size: 16px;">
+                  Verify My Email
+                </a>
+              </td>
+            </tr>
+
+            <!-- Fallback Link -->
+            <tr>
+              <td align="center" style="font-size: 14px; color: #999; padding: 20px 0;">
+                If the button doesn't work, copy and paste this link into your browser:<br />
+                <a href="{{ verification_url }}" style="color: #E91E63;">{{ verification_url }}</a>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td align="center" style="padding-top: 30px; font-size: 12px; color: #bbb;">
+                © {{ year }} Rouge Secret. All rights reserved.
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
