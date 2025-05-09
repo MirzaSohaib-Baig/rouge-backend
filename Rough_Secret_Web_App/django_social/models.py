@@ -111,31 +111,6 @@ class PostPayment(models.Model):
     def __str__(self):
         return f"{self.user.get_full_name()} paid for post {self.post.id}"
 
-class PostList(models.Model):
-
-    name = models.CharField(max_length=50, unique=True)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.name}"
-
-class PostListMapping(models.Model):
-
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='lists')
-    list = models.ForeignKey(PostList, on_delete=models.CASCADE)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        unique_together = ('post', 'list')
-        db_table = 'post_lists'
-
-    def __str__(self):
-        return f"{self.list.name} on post {self.post.id}"
-
 # ========== GROUP EVENT MODELS ==========
 
 class GroupEvent(models.Model):
